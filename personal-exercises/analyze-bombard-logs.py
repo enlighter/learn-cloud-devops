@@ -1,8 +1,8 @@
 import pandas as pd
 import re
 
-bombard_count = 400
-test_label = 'test1'
+bombard_count = 1000
+test_label = 'test2'
 log_folder = 'bombard {}'.format(test_label)
 worker1_task_count = 0
 worker2_task_count = 0
@@ -29,3 +29,7 @@ with open('./{}/worker2-{}.log'.format(log_folder, test_label)) as worker2_log:
             if find_label:
                 task_label = int(find_label.group(1))
                 task_record.loc[task_label, 'execute_count'] += 1
+
+print('total tasks registered by worker 1:', worker1_task_count)
+print('total tasks registered by worker 2:', worker2_task_count)
+task_record.to_csv('task_record.csv')
